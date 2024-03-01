@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://utivt0bw6tds"]
+
+[ext_resource type="Script" path="res://yua_player.gd" id="1_s8jv4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m14ec"]
+
+[node name="Yua_Player" type="CharacterBody3D"]
+script = ExtResource("1_s8jv4")
+
+[node name="yua_col" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0022, 0)
+shape = SubResource("CapsuleShape3D_m14ec")
+
+[node name="YawAxis" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4581, 0)
+
+[node name="Camera" type="Camera3D" parent="YawAxis"]
