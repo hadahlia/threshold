@@ -10,11 +10,16 @@ extends CharacterBody3D
 
 @export var mouseSensitivity = 0.1
 
+@onready var paws_menu = $YawAxis/Camera/paws_menu
+var paused = false
+
 var restartTransform
 var restartVelocity
 
 func _ready():
 	velocity = Vector3.ZERO
+	paws_menu.hide()
+	#process_mode = Node.PROCESS_MODE_PAUSABLE
 	restartTransform = self.global_transform
 	restartVelocity = self.velocity
 	pass # Replace with function body.
@@ -25,7 +30,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		# By using is_action_pressed() rather than is_action_just_pressed()
 		# we get automatic bunny hopping.
-		if Input.is_action_pressed("move_jump"):
+		if Input.is_action_just_pressed("move_jump"):
 			velocity.y = jumpImpulse
 		else:
 			velocity *= groundFriction
@@ -43,6 +48,10 @@ func _physics_process(delta):
 		strafeDir += basis.x
 	strafeDir.y = 0
 	strafeDir = strafeDir.normalized()
+	
+	#Separate Section for ui handling
+	if Input.is_action_just_pressed("pause"):
+		_pause_menu()
 	
 	# Figure out which strafe force and speed limit applies
 	var strafeAccel = groundAcceleration if is_on_floor() else airAcceleration
@@ -77,8 +86,6 @@ func _physics_process(delta):
 func _input(event):
 	if event is InputEventMouseMotion:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	elif event.is_action_pressed("ui_cancel"):
-		get_tree().quit()
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		$YawAxis.rotate_x(deg_to_rad(event.relative.y * mouseSensitivity * -1))
 		self.rotate_y(deg_to_rad(event.relative.x * mouseSensitivity * -1))
@@ -86,3 +93,14 @@ func _input(event):
 		# Clamp yaw to [-89, 89] degrees so you can't flip over
 		var yaw = $YawAxis.rotation_degrees.x
 		$YawAxis.rotation_degrees.x = clamp(yaw, -89, 89)
+		
+func _pause_menu():
+	if paused:
+		paws_menu.hide()
+		get_tree().paused = false
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().paused = true
+		paws_menu.show()
+	
+	paused = !paused

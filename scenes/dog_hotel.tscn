@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://c36hv0o6g0udo" path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" id="2_pg5rs"]
 [ext_resource type="Texture2D" uid="uid://ckfjnpv747mk8" path="res://textures/Ground/Ground_20-128x128.png" id="3_ac4ip"]
 [ext_resource type="Texture2D" uid="uid://cq0wlvgcs3yk7" path="res://textures/Rust/Rust_05-128x128.png" id="4_byeu6"]
-[ext_resource type="PackedScene" uid="uid://utivt0bw6tds" path="res://yua_player.tscn" id="5_8l85i"]
+[ext_resource type="PackedScene" uid="uid://utivt0bw6tds" path="res://scenes/yua_player.tscn" id="5_8l85i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ogw02"]
 
@@ -52,6 +52,7 @@ points = PackedVector3Array(-6, 1, -7, -6, -1, -7, 16, -1, -7, 16, 1, -7, -6, 1,
 points = PackedVector3Array(7, 7, 8, 7, 1, 8, 14, 1, 8, 14, 7, 8, 7, 7, 34, 7, 1, 34, 14, 1, 34, 14, 7, 34)
 
 [node name="dog_hotel" type="Node3D"]
+process_mode = 1
 
 [node name="hide_0" type="Node3D" parent="."]
 script = ExtResource("1_jeipp")

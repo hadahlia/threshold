@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://utivt0bw6tds"]
+[gd_scene load_steps=4 format=3 uid="uid://utivt0bw6tds"]
 
-[ext_resource type="Script" path="res://yua_player.gd" id="1_s8jv4"]
+[ext_resource type="Script" path="res://scenes/yua_player.gd" id="1_s8jv4"]
+[ext_resource type="PackedScene" uid="uid://73m6oddv11f4" path="res://ui/paws_menu.tscn" id="2_ej36n"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m14ec"]
 
@@ -15,3 +16,5 @@ shape = SubResource("CapsuleShape3D_m14ec")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4581, 0)
 
 [node name="Camera" type="Camera3D" parent="YawAxis"]
+
+[node name="paws_menu" parent="YawAxis/Camera" instance=ExtResource("2_ej36n")]
