@@ -11,7 +11,7 @@ extends CharacterBody3D
 @export var mouseSensitivity = 0.1
 
 @onready var paws_menu = $YawAxis/Camera/paws_menu
-var paused = false
+var paused : bool = false
 
 var restartTransform
 var restartVelocity
