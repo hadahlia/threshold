@@ -11,8 +11,8 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-func _on_start_btn_pressed():
-	get_tree().change_scene_to_file("res://scenes/dog_hotel.tscn")
+func _on_start_btn_pressed()->void:
+	get_tree().change_scene_to_file("res://dungeon_budgeter/dun_generator.tscn")
 
 
 func _on_quit_btn_pressed():

@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://c5nbwtdmm0dmm"]
+[gd_scene load_steps=15 format=3 uid="uid://c5nbwtdmm0dmm"]
 
 [ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="1_jeipp"]
 [ext_resource type="Resource" uid="uid://c36hv0o6g0udo" path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" id="2_pg5rs"]
 [ext_resource type="Texture2D" uid="uid://ckfjnpv747mk8" path="res://textures/Ground/Ground_20-128x128.png" id="3_ac4ip"]
 [ext_resource type="Texture2D" uid="uid://cq0wlvgcs3yk7" path="res://textures/Rust/Rust_05-128x128.png" id="4_byeu6"]
 [ext_resource type="PackedScene" uid="uid://utivt0bw6tds" path="res://scenes/yua_player.tscn" id="5_8l85i"]
+[ext_resource type="PackedScene" uid="uid://usb2cwpjkpt" path="res://asset/Floor-col.gltf" id="6_1ch45"]
+[ext_resource type="PackedScene" uid="uid://c2mrvqrh6li3k" path="res://asset/Wall-col.gltf" id="7_7kujf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ogw02"]
 
@@ -80,4 +82,16 @@ transform = Transform3D(1, 0, 0, 0, -0.129782, 0.991543, 0, -0.991543, -0.129782
 light_color = Color(0.709804, 0.741176, 0.898039, 1)
 
 [node name="Yua_Player" parent="." instance=ExtResource("5_8l85i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0056, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15181, 1.0056, 5.92802)
+
+[node name="Floor-col2" parent="." instance=ExtResource("6_1ch45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.70309, 0.999912, 0)
+
+[node name="wall_up" parent="." instance=ExtResource("7_7kujf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02146, 0)
+
+[node name="wall_up2" parent="." instance=ExtResource("7_7kujf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98441, 1.02146, 0)
+
+[node name="wall_up3" parent="." instance=ExtResource("7_7kujf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.98441, 1.02146, 0)

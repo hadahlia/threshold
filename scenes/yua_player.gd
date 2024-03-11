@@ -1,17 +1,21 @@
 extends CharacterBody3D
 
-@export var jumpImpulse = 2.0
-@export var gravity = -5.0
-@export var groundAcceleration = 30.0
-@export var groundSpeedLimit = 3.0
-@export var airAcceleration = 500.0
-@export var airSpeedLimit = 0.5
-@export var groundFriction = 0.9
+@export var jumpImpulse : float = 2.0
+@export var gravity : float = -5.0
+@export var groundAcceleration : float = 30.0
+@export var groundSpeedLimit : float = 3.5
+@export var runAccel : float = 60
+@export var runSpeedLimit : float = 5.0
+@export var airAcceleration : float = 500.0
+@export var airSpeedLimit : float = 0.5
+@export var groundFriction : float = 0.9
 
-@export var mouseSensitivity = 0.1
+@export var mouseSensitivity : float = 0.1
 
-@onready var paws_menu = $YawAxis/Camera/paws_menu
+@onready var paws_menu : Control = $YawAxis/Camera/paws_menu
+@onready var stamina_t : Timer = $StaminaDur
 var paused : bool = false
+var running : bool = false
 
 var restartTransform
 var restartVelocity
@@ -26,6 +30,7 @@ func _ready():
 
 func _physics_process(delta):
 	# Apply gravity, jumping, and ground friction to velocity
+	#print(velocity)
 	velocity.y += gravity * delta
 	if is_on_floor():
 		# By using is_action_pressed() rather than is_action_just_pressed()
@@ -52,11 +57,28 @@ func _physics_process(delta):
 	#Separate Section for ui handling
 	if Input.is_action_just_pressed("pause"):
 		_pause_menu()
-	
+
 	# Figure out which strafe force and speed limit applies
-	var strafeAccel = groundAcceleration if is_on_floor() else airAcceleration
-	var speedLimit = groundSpeedLimit if is_on_floor() else airSpeedLimit
+	var strafeAccel = groundAcceleration if is_on_floor() and not running else airAcceleration
+	var speedLimit = groundSpeedLimit if is_on_floor() and not running else airSpeedLimit
 	
+	if Input.is_action_pressed("move_run"):
+		strafeAccel = runAccel
+		speedLimit = runSpeedLimit
+		#speedLimit = runSpeedLimit if is_on_floor() else airSpeedLimit
+
+	#if Input.is_action_just_pressed("move_run") and not running:
+		#print("running!")
+		#running = true
+		#stamina_t.start()
+	#elif Input.is_action_just_pressed("move_run") and running:
+		#print("walking!")
+		#running = false
+
+	if running:
+		
+		strafeAccel = runAccel
+		speedLimit = runSpeedLimit
 	# Project current velocity onto the strafe direction, and compute a capped
 	# acceleration such that *projected* speed will remain within the limit.
 	var currentSpeed = strafeDir.dot(velocity)
@@ -66,10 +88,8 @@ func _physics_process(delta):
 	# Apply strafe acceleration to velocity and then integrate motion
 	velocity += strafeDir * accel
 	move_and_slide()
-	
-	#if Input.is_action_pressed("move_fast"):
-		#velocity = Vector3.ZERO
-	#if Input.is_action_just_released("move_fast"):
+
+	#if Input.is_action_just_released("move_run"):
 		#velocity = -30 * basis.z
 	
 	#if Input.is_action_just_pressed("checkpoint"):
@@ -81,7 +101,7 @@ func _physics_process(delta):
 		#self.global_transform = restartTransform
 		#self.velocity = restartVelocity
 	#
-	#pass
+	pass
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -104,3 +124,6 @@ func _pause_menu():
 		paws_menu.show()
 	
 	paused = !paused
+
+func _on_stamina_dur_timeout():
+	running = false

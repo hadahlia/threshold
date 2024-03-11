@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://c33bxr6w80vcw"]
+
+[ext_resource type="Script" path="res://dungeon_budgeter/dun_cell.gd" id="1_7qw1q"]
+[ext_resource type="PackedScene" uid="uid://usb2cwpjkpt" path="res://asset/Floor-col.gltf" id="2_x1xlf"]
+[ext_resource type="PackedScene" uid="uid://c2mrvqrh6li3k" path="res://asset/Wall-col.gltf" id="3_a5kjr"]
+[ext_resource type="PackedScene" uid="uid://bepegfnjop8x0" path="res://asset/WallDoor-col.gltf" id="4_81lt3"]
+
+[node name="DunCell" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_7qw1q")
+
+[node name="floor" parent="." instance=ExtResource("2_x1xlf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02146, 0)
+
+[node name="wall_up" parent="." instance=ExtResource("3_a5kjr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02146, 0)
+
+[node name="wall_down" parent="." instance=ExtResource("3_a5kjr")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.02146, 0)
+
+[node name="wall_right" parent="." instance=ExtResource("3_a5kjr")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.02146, 0)
+
+[node name="wall_left" parent="." instance=ExtResource("3_a5kjr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.02146, 0)
+
+[node name="door_up" parent="." instance=ExtResource("4_81lt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02146, 0)
+
+[node name="door_down" parent="." instance=ExtResource("4_81lt3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.02146, 0)
+
+[node name="door_right" parent="." instance=ExtResource("4_81lt3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.02146, 0)
+
+[node name="door_left" parent="." instance=ExtResource("4_81lt3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.02146, 0)

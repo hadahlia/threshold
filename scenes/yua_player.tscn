@@ -4,20 +4,36 @@
 [ext_resource type="PackedScene" uid="uid://73m6oddv11f4" path="res://ui/paws_menu.tscn" id="2_ej36n"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m14ec"]
+radius = 0.3
+height = 1.5
 
 [node name="Yua_Player" type="CharacterBody3D"]
 process_mode = 1
 script = ExtResource("1_s8jv4")
 jumpImpulse = 3.1
-gravity = -9.8
+gravity = -8.6
+groundSpeedLimit = 4.0
+groundFriction = 0.8
 
 [node name="yua_col" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0022, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.747665, 0)
 shape = SubResource("CapsuleShape3D_m14ec")
 
 [node name="YawAxis" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4581, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1908, 0)
 
 [node name="Camera" type="Camera3D" parent="YawAxis"]
 
 [node name="paws_menu" parent="YawAxis/Camera" instance=ExtResource("2_ej36n")]
+
+[node name="StaminaDur" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628692, 0)
+light_color = Color(0.486275, 0.741176, 0.894118, 1)
+light_energy = 0.5
+distance_fade_enabled = true
+
+[connection signal="timeout" from="StaminaDur" to="." method="_on_stamina_dur_timeout"]
