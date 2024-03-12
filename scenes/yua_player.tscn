@@ -11,8 +11,11 @@ height = 1.5
 process_mode = 1
 script = ExtResource("1_s8jv4")
 jumpImpulse = 3.1
-gravity = -8.6
+gravity = -9.8
 groundSpeedLimit = 4.0
+runAccel = 59.0
+runSpeedLimit = 6.0
+airAcceleration = 80.0
 groundFriction = 0.8
 
 [node name="yua_col" type="CollisionShape3D" parent="."]

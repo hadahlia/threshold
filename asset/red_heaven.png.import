@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3wevnt7ikktj"
-path.bptc="res://.godot/imported/blue_brick.png-00faaeeb7bfa02c94aebec37a60c1d06.bptc.ctex"
+uid="uid://bqie4pmd5w8gn"
+path.bptc="res://.godot/imported/red_heaven.png-8b3068639a3442debb1e361c0029abb1.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://asset/blue_brick.png"
-dest_files=["res://.godot/imported/blue_brick.png-00faaeeb7bfa02c94aebec37a60c1d06.bptc.ctex"]
+source_file="res://asset/red_heaven.png"
+dest_files=["res://.godot/imported/red_heaven.png-8b3068639a3442debb1e361c0029abb1.bptc.ctex"]
 
 [params]
 

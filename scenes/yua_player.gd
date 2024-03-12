@@ -59,11 +59,11 @@ func _physics_process(delta):
 		_pause_menu()
 
 	# Figure out which strafe force and speed limit applies
-	var strafeAccel = groundAcceleration if is_on_floor() and not running else airAcceleration
-	var speedLimit = groundSpeedLimit if is_on_floor() and not running else airSpeedLimit
+	var strafeAccel = groundAcceleration if is_on_floor() else airAcceleration
+	var speedLimit = groundSpeedLimit if is_on_floor() else airSpeedLimit
 	
-	if Input.is_action_pressed("move_run"):
-		strafeAccel = runAccel
+	if Input.is_action_pressed("move_run") and is_on_floor():
+		strafeAccel = runAccel 
 		speedLimit = runSpeedLimit
 		#speedLimit = runSpeedLimit if is_on_floor() else airSpeedLimit
 
@@ -75,10 +75,10 @@ func _physics_process(delta):
 		#print("walking!")
 		#running = false
 
-	if running:
+	#if running and is_on_floor():
+		#strafeAccel = runAccel
+		#speedLimit = runSpeedLimit
 		
-		strafeAccel = runAccel
-		speedLimit = runSpeedLimit
 	# Project current velocity onto the strafe direction, and compute a capped
 	# acceleration such that *projected* speed will remain within the limit.
 	var currentSpeed = strafeDir.dot(velocity)

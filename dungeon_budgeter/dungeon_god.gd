@@ -45,6 +45,7 @@ func visualize_boundary():
 
 func _ready():
 	generate()
+	spawn_yua()
 
 func generate():
 	room_tiles.clear()
@@ -108,12 +109,6 @@ func generate():
 	var dun_mesh : Node3D = $DunMeshy
 	dun_mesh.create_dungeon()
 	
-	var yua = Yua.instantiate()
-	#remove_child(yua)
-	if !yua.is_inside_tree():
-		add_child(yua)
-	
-	yua.position = room_positions[0] + Vector3(0,1,0)
 	
 func create_hallways(hallway_graph:AStar2D):
 	var hallways : Array[PackedVector3Array] = []
@@ -189,6 +184,13 @@ func make_room(rec:int):
 	var pos : Vector3 = Vector3(avg_x, 0, avg_z)
 	room_positions.append(pos)
 
+func spawn_yua():
+	var yua = Yua.instantiate()
+	#remove_child(yua)
+	if !yua.is_inside_tree():
+		add_child(yua)
+	
+	yua.position = room_positions[0] + Vector3(0,1,0)
 func start_exit_gen():
 	#var room_from : PackedVector3Array = room_tiles[r]
 	#var what : int = randi_range(0, room_positions.size())

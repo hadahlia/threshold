@@ -12,7 +12,8 @@ func _on_mouse_exited():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_start_btn_pressed()->void:
-	get_tree().change_scene_to_file("res://dungeon_budgeter/dun_generator.tscn")
+	var loadScreen : PackedScene = load("res://ui/loader_scene.tscn")
+	get_tree().change_scene_to_packed(loadScreen)
 
 
 func _on_quit_btn_pressed():
