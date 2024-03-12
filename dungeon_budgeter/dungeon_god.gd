@@ -109,8 +109,10 @@ func generate():
 	dun_mesh.create_dungeon()
 	
 	var yua = Yua.instantiate()
-	remove_child(yua)
-	add_child(yua)
+	#remove_child(yua)
+	if !yua.is_inside_tree():
+		add_child(yua)
+	
 	yua.position = room_positions[0] + Vector3(0,1,0)
 	
 func create_hallways(hallway_graph:AStar2D):

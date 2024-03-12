@@ -26,14 +26,11 @@
 	"materials":[
 		{
 			"doubleSided":true,
-			"name":"dark",
+			"name":"Material",
 			"pbrMetallicRoughness":{
-				"baseColorFactor":[
-					0.009952142834663391,
-					0.009952142834663391,
-					0.009952142834663391,
-					1
-				],
+				"baseColorTexture":{
+					"index":0
+				},
 				"metallicFactor":0,
 				"roughnessFactor":0.5
 			}
@@ -53,6 +50,19 @@
 					"material":0
 				}
 			]
+		}
+	],
+	"textures":[
+		{
+			"sampler":0,
+			"source":0
+		}
+	],
+	"images":[
+		{
+			"mimeType":"image/png",
+			"name":"red_brick",
+			"uri":"red_brick.png"
 		}
 	],
 	"accessors":[
@@ -115,6 +125,12 @@
 			"byteLength":72,
 			"byteOffset":768,
 			"target":34963
+		}
+	],
+	"samplers":[
+		{
+			"magFilter":9729,
+			"minFilter":9987
 		}
 	],
 	"buffers":[
