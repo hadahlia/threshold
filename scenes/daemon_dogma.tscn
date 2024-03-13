@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://1xa8i30llkrq"]
+
+[ext_resource type="Script" path="res://daemon_ai.gd" id="1_lb6bh"]
+[ext_resource type="Texture2D" uid="uid://csjm0ejyyajbn" path="res://textures/daema.png" id="2_uv6vt"]
+
+[node name="Daemon" type="Node3D"]
+script = ExtResource("1_lb6bh")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.57272, 0)
+billboard = 1
+texture = ExtResource("2_uv6vt")

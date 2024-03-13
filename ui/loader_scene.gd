@@ -5,7 +5,7 @@ var sceneName : String
 var scene_load_status : int = 0
 
 func _ready():
-	sceneName = "res://dungeon_budgeter/dun_generator.tscn"
+	sceneName = "res://scenes/scene_mind.tscn"
 	ResourceLoader.load_threaded_request(sceneName)
 
 func _process(delta):

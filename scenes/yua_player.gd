@@ -10,6 +10,10 @@ extends CharacterBody3D
 @export var airSpeedLimit : float = 0.5
 @export var groundFriction : float = 0.9
 
+@export var boing_freq : float = 2.4
+@export var boing_amp : float = 0.08
+@export var t_boing : float = 0.0
+
 @export var mouseSensitivity : float = 0.1
 
 @onready var paws_menu : Control = $YawAxis/Camera/paws_menu

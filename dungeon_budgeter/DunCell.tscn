@@ -1,37 +1,98 @@
-[gd_scene load_steps=5 format=3 uid="uid://c33bxr6w80vcw"]
+[gd_scene load_steps=9 format=3 uid="uid://c33bxr6w80vcw"]
 
 [ext_resource type="Script" path="res://dungeon_budgeter/dun_cell.gd" id="1_7qw1q"]
 [ext_resource type="PackedScene" uid="uid://usb2cwpjkpt" path="res://asset/Floor-col.gltf" id="2_x1xlf"]
 [ext_resource type="PackedScene" uid="uid://c2mrvqrh6li3k" path="res://asset/Wall-col.gltf" id="3_a5kjr"]
+[ext_resource type="Texture2D" uid="uid://cnrcm820sc10b" path="res://asset/wood_tile_2.png" id="3_axgbi"]
+[ext_resource type="Material" uid="uid://dd00i8l08vn8o" path="res://textures/brick_red.tres" id="4_1e6p3"]
+[ext_resource type="Material" uid="uid://bvrifl65t247q" path="res://textures/brick_blue.tres" id="4_2k8j0"]
 [ext_resource type="PackedScene" uid="uid://bepegfnjop8x0" path="res://asset/WallDoor-col.gltf" id="4_81lt3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vaxqb"]
+albedo_texture = ExtResource("3_axgbi")
+albedo_texture_force_srgb = true
+metallic_specular = 0.53
+metallic_texture_channel = 2
+roughness = 0.78
 
 [node name="DunCell" type="Node3D"]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_7qw1q")
 
 [node name="floor" parent="." instance=ExtResource("2_x1xlf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02146, 0)
+process_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0356522, 1.02146, 0.0163631)
+
+[node name="Floor" parent="floor" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_vaxqb")
+surface_material_override/1 = ExtResource("4_2k8j0")
 
 [node name="wall_up" parent="." instance=ExtResource("3_a5kjr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02146, 0)
 
+[node name="Wall" parent="wall_up" index="0"]
+surface_material_override/0 = ExtResource("4_1e6p3")
+
 [node name="wall_down" parent="." instance=ExtResource("3_a5kjr")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.02146, 0)
+
+[node name="Wall" parent="wall_down" index="0"]
+surface_material_override/0 = ExtResource("4_1e6p3")
 
 [node name="wall_right" parent="." instance=ExtResource("3_a5kjr")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.02146, 0)
 
+[node name="Wall" parent="wall_right" index="0"]
+surface_material_override/0 = ExtResource("4_1e6p3")
+
 [node name="wall_left" parent="." instance=ExtResource("3_a5kjr")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.02146, 0)
+
+[node name="Wall" parent="wall_left" index="0"]
+surface_material_override/0 = ExtResource("4_1e6p3")
 
 [node name="door_up" parent="." instance=ExtResource("4_81lt3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02146, 0)
 
+[node name="WallDoor" parent="door_up" index="0"]
+surface_material_override/0 = ExtResource("4_1e6p3")
+
+[node name="DoorFrame" parent="door_up/WallDoor" index="0"]
+surface_material_override/0 = ExtResource("4_1e6p3")
+
 [node name="door_down" parent="." instance=ExtResource("4_81lt3")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.02146, 0)
+
+[node name="WallDoor" parent="door_down" index="0"]
+surface_material_override/0 = ExtResource("4_1e6p3")
+
+[node name="DoorFrame" parent="door_down/WallDoor" index="0"]
+surface_material_override/0 = ExtResource("4_1e6p3")
 
 [node name="door_right" parent="." instance=ExtResource("4_81lt3")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.02146, 0)
 
+[node name="WallDoor" parent="door_right" index="0"]
+surface_material_override/0 = ExtResource("4_1e6p3")
+
+[node name="DoorFrame" parent="door_right/WallDoor" index="0"]
+surface_material_override/0 = ExtResource("4_1e6p3")
+
 [node name="door_left" parent="." instance=ExtResource("4_81lt3")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.02146, 0)
+
+[node name="WallDoor" parent="door_left" index="0"]
+surface_material_override/0 = ExtResource("4_1e6p3")
+
+[node name="DoorFrame" parent="door_left/WallDoor" index="0"]
+surface_material_override/0 = ExtResource("4_1e6p3")
+
+[editable path="floor"]
+[editable path="wall_up"]
+[editable path="wall_down"]
+[editable path="wall_right"]
+[editable path="wall_left"]
+[editable path="door_up"]
+[editable path="door_down"]
+[editable path="door_right"]
+[editable path="door_left"]

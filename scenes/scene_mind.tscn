@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bch85yl4650d"]
+
+[ext_resource type="PackedScene" uid="uid://ds2i7m5141wa0" path="res://dungeon_budgeter/dun_generator.tscn" id="1_emvta"]
+
+[node name="SceneMind" type="Node"]
+
+[node name="DunGenerator" parent="." instance=ExtResource("1_emvta")]

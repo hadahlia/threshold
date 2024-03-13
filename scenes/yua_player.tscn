@@ -16,7 +16,7 @@ groundSpeedLimit = 4.0
 runAccel = 59.0
 runSpeedLimit = 6.0
 airAcceleration = 80.0
-groundFriction = 0.8
+groundFriction = 0.83
 
 [node name="yua_col" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.747665, 0)

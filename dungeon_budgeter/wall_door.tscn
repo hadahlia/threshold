@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8vw4tlvku7qu"]
+
+[ext_resource type="PackedScene" uid="uid://bepegfnjop8x0" path="res://asset/WallDoor-col.gltf" id="1_n8hek"]
+
+[node name="WallDoor-col" instance=ExtResource("1_n8hek")]

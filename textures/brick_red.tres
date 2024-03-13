@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dd00i8l08vn8o"]
+
+[ext_resource type="Texture2D" uid="uid://0lmb05voocfv" path="res://asset/red_brick.png" id="1_gitc7"]
+
+[resource]
+albedo_texture = ExtResource("1_gitc7")
+albedo_texture_force_srgb = true
+metallic_specular = 0.04

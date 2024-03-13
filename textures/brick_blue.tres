@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bvrifl65t247q"]
+
+[ext_resource type="Texture2D" uid="uid://c3wevnt7ikktj" path="res://asset/blue_brick.png" id="1_t6r0q"]
+
+[resource]
+albedo_texture = ExtResource("1_t6r0q")
+albedo_texture_force_srgb = true
+metallic = 0.19
+metallic_specular = 0.43
+metallic_texture_channel = 2
