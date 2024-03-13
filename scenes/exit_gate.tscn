@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://675gudhcbiu5"]
+
+[ext_resource type="Texture2D" uid="uid://df0ihr2lc73br" path="res://textures/portal.png" id="1_ebsip"]
+[ext_resource type="Script" path="res://scenes/death_puppy.gd" id="2_jex2u"]
+[ext_resource type="AudioStream" uid="uid://dpe4ryinxb062" path="res://sound/transition elastic 013.wav" id="3_b50al"]
+[ext_resource type="AudioStream" uid="uid://br6nhmva4o2y7" path="res://sound/portal_breath.wav" id="3_ba58v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1gifo"]
+size = Vector3(0.8, 2.92421, 0.8)
+
+[sub_resource type="Animation" id="Animation_xryyw"]
+resource_name = "floaty"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.48901, 0, 0.4, 1, 0, 1.70864, 0, 1.4, 1, 0, 2.16635, 0, 1.6, 1, 0, 2.19159, 0, 2.3, 1, 0, 1.80836, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sb68t"]
+_data = {
+"floaty": SubResource("Animation_xryyw")
+}
+
+[node name="ExitGate" type="Node3D"]
+process_mode = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.98795, 0)
+billboard = 2
+texture = ExtResource("1_ebsip")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sprite3D"]
+light_color = Color(0.568627, 0.588235, 0.94902, 1)
+light_energy = 2.391
+
+[node name="Trans_Level" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.07295, 0)
+
+[node name="Death_Puppy" type="CollisionShape3D" parent="Trans_Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.55785, 0)
+shape = SubResource("BoxShape3D_1gifo")
+script = ExtResource("2_jex2u")
+
+[node name="warp" type="AudioStreamPlayer" parent="Trans_Level/Death_Puppy"]
+stream = ExtResource("3_b50al")
+volume_db = -10.0
+pitch_scale = 2.27
+
+[node name="floaty" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.32152, 0)
+stream = ExtResource("3_ba58v")
+volume_db = -3.0
+max_db = -1.024
+pitch_scale = 0.88
+autoplay = true
+max_distance = 10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sb68t")
+}
+speed_scale = 0.728
+
+[connection signal="body_shape_entered" from="Trans_Level" to="Trans_Level/Death_Puppy" method="_on_trans_level_body_shape_entered"]

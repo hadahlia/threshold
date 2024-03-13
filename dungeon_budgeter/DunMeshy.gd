@@ -38,6 +38,7 @@ func handle_12(cell:Node3D,dir:String):
 func handle_20(cell:Node3D,dir:String):
 	cell.call("remove_wall_"+dir)
 	cell.call("remove_door_"+dir)
+#this baby spawns doors
 func handle_21(cell:Node3D,dir:String):
 	cell.call("remove_wall_"+dir)
 func handle_22(cell:Node3D,dir:String):
@@ -68,3 +69,6 @@ func create_dungeon():
 					var key : String = str(cell_index) + str(cell_n_index)
 					call("handle_"+key,dun_cell,directions.keys()[i])
 		if t%10 == 9 : await get_tree().create_timer(0).timeout
+
+#func create_exit():
+	#pass

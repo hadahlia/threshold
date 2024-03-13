@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dpe4ryinxb062"
+path="res://.godot/imported/transition elastic 013.wav-79a7ad2c60fbab47e6d7432f793dab96.sample"
+
+[deps]
+
+source_file="res://sound/transition elastic 013.wav"
+dest_files=["res://.godot/imported/transition elastic 013.wav-79a7ad2c60fbab47e6d7432f793dab96.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

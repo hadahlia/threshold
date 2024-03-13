@@ -5,7 +5,8 @@ extends Node3D
 
 @onready var grid_map : GridMap = $GridMap
 
-const Yua : PackedScene = preload("res://scenes/yua_player.tscn")
+const YUA : PackedScene = preload("res://scenes/yua_player.tscn")
+const EXIT_GATE : PackedScene = preload("res://scenes/exit_gate.tscn")
 
 @export var start : bool = false : set = set_start
 
@@ -46,6 +47,7 @@ func visualize_boundary():
 func _ready():
 	generate()
 	spawn_yua()
+	create_exit()
 
 func generate():
 	room_tiles.clear()
@@ -185,14 +187,17 @@ func make_room(rec:int):
 	room_positions.append(pos)
 
 func spawn_yua():
-	var yua = Yua.instantiate()
+	var yua := YUA.instantiate()
 	#remove_child(yua)
 	if !yua.is_inside_tree():
 		add_child(yua)
 	
 	yua.position = room_positions[0] + Vector3(0,1,0)
-func start_exit_gen():
-	#var room_from : PackedVector3Array = room_tiles[r]
-	#var what : int = randi_range(0, room_positions.size())
-	#grid_map.set_cell_item(points, 4)
-	pass
+func create_exit():
+	var exit := EXIT_GATE.instantiate()
+	var sample_pos : int = randi_range(2, room_positions.size()-1)
+	
+	if !exit.is_inside_tree():
+		add_child(exit)
+		
+	exit.position = room_positions[sample_pos]

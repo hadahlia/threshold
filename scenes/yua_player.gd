@@ -25,6 +25,9 @@ var restartTransform
 var restartVelocity
 
 func _ready():
+	var warp = get_node("warp")
+	warp.play()
+	
 	velocity = Vector3.ZERO
 	paws_menu.hide()
 	#process_mode = Node.PROCESS_MODE_PAUSABLE
