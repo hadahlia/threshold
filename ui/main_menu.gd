@@ -3,6 +3,9 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.FloorNum = 0
+	Global.BoundUp = 0
+	Global.RoomUp = 0
 	$VBoxContainer/start_btn.grab_focus()
 	
 func _on_mouse_entered():

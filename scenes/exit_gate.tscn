@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://675gudhcbiu5"]
+[gd_scene load_steps=9 format=3 uid="uid://675gudhcbiu5"]
 
 [ext_resource type="Texture2D" uid="uid://df0ihr2lc73br" path="res://textures/portal.png" id="1_ebsip"]
 [ext_resource type="Script" path="res://scenes/death_puppy.gd" id="2_jex2u"]
 [ext_resource type="AudioStream" uid="uid://dpe4ryinxb062" path="res://sound/transition elastic 013.wav" id="3_b50al"]
 [ext_resource type="AudioStream" uid="uid://br6nhmva4o2y7" path="res://sound/portal_breath.wav" id="3_ba58v"]
+[ext_resource type="Script" path="res://scenes/AnimationPlayer.gd" id="5_78unc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1gifo"]
 size = Vector3(0.8, 2.92421, 0.8)
@@ -29,7 +30,7 @@ _data = {
 process_mode = 1
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.98795, 0)
+transform = Transform3D(0.4, 0, 0, 0, 0.3, 0, 0, 0, 0.4, 0, 1.48901, 0)
 billboard = 2
 texture = ExtResource("1_ebsip")
 
@@ -39,6 +40,8 @@ light_energy = 2.391
 
 [node name="Trans_Level" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.07295, 0)
+collision_layer = 3
+collision_mask = 3
 
 [node name="Death_Puppy" type="CollisionShape3D" parent="Trans_Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.55785, 0)
@@ -64,5 +67,6 @@ libraries = {
 "": SubResource("AnimationLibrary_sb68t")
 }
 speed_scale = 0.728
+script = ExtResource("5_78unc")
 
 [connection signal="body_shape_entered" from="Trans_Level" to="Trans_Level/Death_Puppy" method="_on_trans_level_body_shape_entered"]

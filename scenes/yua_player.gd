@@ -17,22 +17,31 @@ extends CharacterBody3D
 @export var mouseSensitivity : float = 0.1
 
 @onready var paws_menu : Control = $YawAxis/Camera/paws_menu
+@onready var post_pass : ColorRect = $CanvasLayer/PostProcess
+#@onready var chaos_closed : Sprite2D = $CanvasLayer/Anchor/ChaosH_Idle
+#@onready var chaos_open : Sprite2D = $CanvasLayer/Anchor/Chaos_Hand
 @onready var stamina_t : Timer = $StaminaDur
 var paused : bool = false
 var running : bool = false
+var chaos : bool = false
 
 var restartTransform
 var restartVelocity
 
 func _ready():
+	#add_to_group("player")
+	#print("Floor: ", Global.FloorNum, "\n Boundary Incr: ", Global.BoundUp, "\n Room Incr: ", Global.RoomUp)
 	var warp = get_node("warp")
 	warp.play()
 	
 	velocity = Vector3.ZERO
+	post_pass.hide()
 	paws_menu.hide()
+	#chaos_open.hide()
 	#process_mode = Node.PROCESS_MODE_PAUSABLE
 	restartTransform = self.global_transform
 	restartVelocity = self.velocity
+	
 	pass # Replace with function body.
 
 func _physics_process(delta):
@@ -61,9 +70,9 @@ func _physics_process(delta):
 	strafeDir.y = 0
 	strafeDir = strafeDir.normalized()
 	
-	#Separate Section for ui handling
-	if Input.is_action_just_pressed("pause"):
-		_pause_menu()
+	
+	
+	
 
 	# Figure out which strafe force and speed limit applies
 	var strafeAccel = groundAcceleration if is_on_floor() else airAcceleration
@@ -74,13 +83,6 @@ func _physics_process(delta):
 		speedLimit = runSpeedLimit
 		#speedLimit = runSpeedLimit if is_on_floor() else airSpeedLimit
 
-	#if Input.is_action_just_pressed("move_run") and not running:
-		#print("running!")
-		#running = true
-		#stamina_t.start()
-	#elif Input.is_action_just_pressed("move_run") and running:
-		#print("walking!")
-		#running = false
 
 	#if running and is_on_floor():
 		#strafeAccel = runAccel
@@ -110,17 +112,40 @@ func _physics_process(delta):
 	#
 	pass
 
+func _process(delta):
+	if chaos:
+		post_pass.show()
+	else:
+		post_pass.hide()
+
 func _input(event):
+	
 	if event is InputEventMouseMotion:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		$YawAxis.rotate_x(deg_to_rad(event.relative.y * mouseSensitivity * -1))
 		self.rotate_y(deg_to_rad(event.relative.x * mouseSensitivity * -1))
-
 		# Clamp yaw to [-89, 89] degrees so you can't flip over
 		var yaw = $YawAxis.rotation_degrees.x
-		$YawAxis.rotation_degrees.x = clamp(yaw, -89, 89)
+		$YawAxis.rotation_degrees.x = clamp(yaw, -79, 79)
 		
+	#Separate Section for ui handling
+	if Input.is_action_just_pressed("pause"):
+		post_pass.hide()
+		_pause_menu()
+		
+	if Input.is_action_just_pressed("aberration"):
+		_shader_rect()
+		
+func _shader_rect():
+	if chaos:
+		post_pass.show()
+	else:
+		post_pass.hide()
+	
+	chaos = !chaos
+
+
 func _pause_menu():
 	if paused:
 		paws_menu.hide()

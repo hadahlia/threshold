@@ -4,6 +4,7 @@ extends Node3D
 @export var grid_map_path : NodePath
 @onready var grid_map : GridMap = get_node(grid_map_path)
 
+
 @export var start : bool = false : set = set_start
 func set_start(val:bool)->void:
 	if Engine.is_editor_hint():
@@ -70,5 +71,3 @@ func create_dungeon():
 					call("handle_"+key,dun_cell,directions.keys()[i])
 		if t%10 == 9 : await get_tree().create_timer(0).timeout
 
-#func create_exit():
-	#pass

@@ -7,6 +7,7 @@ extends Node3D
 
 const YUA : PackedScene = preload("res://scenes/yua_player.tscn")
 const EXIT_GATE : PackedScene = preload("res://scenes/exit_gate.tscn")
+#const WUFFY : PackedScene = preload("res://scenes/daemon_dogma.tscn")
 
 @export var start : bool = false : set = set_start
 
@@ -15,21 +16,22 @@ func set_start(val: bool)->void:
 		generate()
 
 @export_range(0,1) var survival_chance : float = 0.25
-@export var boundary_size : int = 15 : set = set_dun_border
+@export var boundary_size : int = 25 #+ Global.BoundUp : set = set_dun_border
 
 func set_dun_border(val : int)->void:
 	boundary_size = val
 	if Engine.is_editor_hint():
 		visualize_boundary()
 
-@export var room_count : int = 2
-@export var room_margin : int = 1
-@export var room_recursion : int = 10
-@export var min_room_size : int = 2
-@export var max_room_size : int = 6
+@export var room_count : int = 4 #+ Global.RoomUp
+@export var room_margin : int = 2
+@export var room_recursion : int = 15
+@export var min_room_size : int = 3
+@export var max_room_size : int = 11
 @export_multiline var custom_seed : String = "" : set = set_seed 
 
 func set_seed(val:String)->void:
+	print("seed: ", custom_seed)
 	custom_seed = val
 	seed(val.hash())
 
@@ -46,8 +48,8 @@ func visualize_boundary():
 
 func _ready():
 	generate()
-	spawn_yua()
 	create_exit()
+	spawn_yua()
 
 func generate():
 	room_tiles.clear()
@@ -111,6 +113,7 @@ func generate():
 	var dun_mesh : Node3D = $DunMeshy
 	dun_mesh.create_dungeon()
 	
+	#spawn_wuffy()
 	
 func create_hallways(hallway_graph:AStar2D):
 	var hallways : Array[PackedVector3Array] = []
@@ -193,6 +196,18 @@ func spawn_yua():
 		add_child(yua)
 	
 	yua.position = room_positions[0] + Vector3(0,1,0)
+	
+	#get_tree().call_group("monter", "move_to", yua.position)
+
+#func spawn_wuffy():
+	#var wuffy := WUFFY.instantiate()
+	#var sample_pos2 : int = randi_range(2, room_positions.size()-1)
+	#
+	#if !wuffy.is_inside_tree():
+		#add_child(wuffy)
+	#
+	#wuffy.position = room_positions[sample_pos2] + Vector3(0,1,0)
+	
 func create_exit():
 	var exit := EXIT_GATE.instantiate()
 	var sample_pos : int = randi_range(2, room_positions.size()-1)

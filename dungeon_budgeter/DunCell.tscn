@@ -16,6 +16,7 @@ metallic_texture_channel = 2
 roughness = 0.78
 
 [node name="DunCell" type="Node3D"]
+process_mode = 1
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_7qw1q")
 

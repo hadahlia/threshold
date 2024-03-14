@@ -11,12 +11,17 @@ config_version=5
 [application]
 
 config/name="ThresHold"
-config/version="0w0"
+config/version="0.0"
 run/main_scene="res://ui/main_menu.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0.054902, 0.0117647, 0.137255, 1)
 boot_splash/show_image=false
 config/icon="res://threshico.svg"
+config/windows_native_icon="res://threshico.ico"
+
+[autoload]
+
+Global="*res://Global.gd"
 
 [display]
 
@@ -35,7 +40,13 @@ enabled=PackedStringArray("res://addons/qodot/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://addons/": "gray"
+"res://asset/": "pink",
+"res://dungeon_budgeter/": "red",
+"res://scenes/": "orange",
+"res://shaders/": "purple",
+"res://sound/": "yellow",
+"res://textures/": "green",
+"res://ui/": "teal"
 }
 
 [filesystem]
@@ -87,6 +98,11 @@ pause={
 move_run={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+aberration={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(133, 14),"global_position":Vector2(137, 55),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 

@@ -24,6 +24,7 @@ albedo_color = Color(0, 0.639216, 0.486275, 1)
 albedo_color = Color(0.317647, 0.505882, 1, 1)
 
 [node name="TileWorld" type="Node3D"]
+process_mode = 1
 
 [node name="RoomTile" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_kfpgc")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://utivt0bw6tds"]
+[gd_scene load_steps=9 format=3 uid="uid://utivt0bw6tds"]
 
 [ext_resource type="Script" path="res://scenes/yua_player.gd" id="1_s8jv4"]
 [ext_resource type="PackedScene" uid="uid://73m6oddv11f4" path="res://ui/paws_menu.tscn" id="2_ej36n"]
 [ext_resource type="Texture2D" uid="uid://cdcfcm4i8umv8" path="res://textures/chaos_hand_revise_full.png" id="3_diydq"]
+[ext_resource type="Shader" path="res://shaders/chromatic_youknow.gdshader" id="3_ok3ns"]
 [ext_resource type="Texture2D" uid="uid://c23gjw3op7vtb" path="res://textures/chaos_hand_revise_empty.png" id="4_27nh5"]
 [ext_resource type="AudioStream" uid="uid://dpe4ryinxb062" path="res://sound/transition elastic 013.wav" id="5_elydc"]
 
@@ -10,8 +11,16 @@
 radius = 0.3
 height = 1.5
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vitqy"]
+shader = ExtResource("3_ok3ns")
+shader_parameter/r_displacement = Vector2(3, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(-3, 0)
+
 [node name="Yua_Player" type="CharacterBody3D"]
 process_mode = 1
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_s8jv4")
 jumpImpulse = 3.1
 gravity = -9.8
@@ -44,6 +53,7 @@ light_energy = 0.5
 distance_fade_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 1
 
 [node name="Anchor" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -65,9 +75,18 @@ texture = ExtResource("3_diydq")
 
 [node name="Chaos_Hand" type="Sprite2D" parent="CanvasLayer/Anchor"]
 visible = false
-position = Vector2(143, -322.469)
-scale = Vector2(1.48438, 1.54297)
+position = Vector2(128, -391)
+scale = Vector2(2.47547, 2.57318)
 texture = ExtResource("4_27nh5")
+
+[node name="PostProcess" type="ColorRect" parent="CanvasLayer"]
+process_mode = 1
+material = SubResource("ShaderMaterial_vitqy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="warp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_elydc")

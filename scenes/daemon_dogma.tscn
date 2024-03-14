@@ -1,12 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://1xa8i30llkrq"]
+[gd_scene load_steps=4 format=3 uid="uid://1xa8i30llkrq"]
 
-[ext_resource type="Script" path="res://daemon_ai.gd" id="1_lb6bh"]
+[ext_resource type="Script" path="res://scenes/daemon_ai.gd" id="1_lb6bh"]
 [ext_resource type="Texture2D" uid="uid://csjm0ejyyajbn" path="res://textures/daema.png" id="2_uv6vt"]
 
-[node name="Daemon" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bxmrt"]
+
+[node name="Daemon" type="CharacterBody3D"]
+process_mode = 1
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_lb6bh")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.57272, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.29503, 0)
 billboard = 2
 texture = ExtResource("2_uv6vt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02426, 0)
+shape = SubResource("CapsuleShape3D_bxmrt")

@@ -5,3 +5,6 @@
 [node name="SceneMind" type="Node"]
 
 [node name="DunGenerator" parent="." instance=ExtResource("1_emvta")]
+room_margin = 0
+room_recursion = 0
+max_room_size = 0
